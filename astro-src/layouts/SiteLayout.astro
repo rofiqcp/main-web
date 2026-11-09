@@ -1,0 +1,76 @@
+---
+import '../styles/global.css';
+interface Props { title: string; description?: string; }
+const { title, description = 'Otomasi menghubungkan asisten AI dengan komputer, file, dan terminal Anda melalui Remote MCP.' } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f8f2e9" />
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Otomasi" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={new URL(currentPath, 'https://mcp.otomasi.app').href} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="page-backdrop" aria-hidden="true"></div>
+    <header class="site-header">
+      <div class="container nav-shell">
+        <a class="brand" href="/" aria-label="Otomasi — ke halaman utama">
+          <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><rect x="7" y="7" width="30" height="30" rx="10" stroke="currentColor" stroke-width="4"/><path d="m16 22 5 5 8-11" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="brand-word">otomasi<span class="brand-caption">REMOTE WORKSPACE</span></span>
+        </a>
+        <button class="mobile-nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Tampilkan navigasi">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-links" id="primary-nav" aria-label="Navigasi utama">
+          <a href="/" class:list={[{active:currentPath === '/'}]}>Beranda</a>
+          <a href="/#fitur">Fitur</a>
+          <a href="/#cara-kerja">Cara kerja</a>
+          <a href="/connect/" class:list={[{active:currentPath.startsWith('/connect')}]} >Koneksi AI</a>
+          <a class="button button-small button-primary nav-dashboard" href="/dashboard/"><span class="nav-dashboard-icon">◫</span> Dashboard <span aria-hidden="true">↗</span></a>
+        </nav>
+      </div>
+    </header>
+    <main id="main-content"><slot /></main>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-top">
+          <div>
+            <a href="/" class="brand brand-footer">
+              <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><rect x="7" y="7" width="30" height="30" rx="10" stroke="currentColor" stroke-width="4"/><path d="m16 22 5 5 8-11" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="brand-word">otomasi<span class="brand-caption">REMOTE WORKSPACE</span></span>
+            </a>
+            <p>AI yang benar-benar bekerja di komputer Anda. Terhubung lewat MCP, dikelola dengan sederhana.</p>
+          </div>
+          <div class="footer-links"><span>Jelajahi</span><a href="/">Beranda</a><a href="/dashboard/">Dashboard</a><a href="/connect/">Hubungkan AI</a></div>
+          <div class="footer-links"><span>Sistem</span><a href="https://mcp.otomasi.app/remote/healthz" target="_blank" rel="noopener noreferrer">Status server</a><a href="https://github.com/rofiqcp" target="_blank" rel="noopener noreferrer">GitHub Otomasi</a></div>
+        </div>
+        <div class="footer-bottom"><span>© {new Date().getFullYear()} Otomasi. Dibangun untuk bekerja lebih cerdas.</span><span>Dirancang dengan <span aria-label="perhatian">♥</span> di Indonesia</span></div>
+      </div>
+    </footer>
+    <script is:inline>
+      (() => {
+        const button = document.getElementById('nav-toggle');
+        const nav = document.getElementById('primary-nav');
+        if (!button || !nav) return;
+        button.addEventListener('click', () => {
+          const open = button.getAttribute('aria-expanded') !== 'true';
+          button.setAttribute('aria-expanded', String(open));
+          nav.classList.toggle('nav-open', open);
+        });
+        nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+          button.setAttribute('aria-expanded', 'false');
+          nav.classList.remove('nav-open');
+        }));
+      })();
+    </script>
+  </body>
+</html>

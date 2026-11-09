@@ -1,48 +1,111 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { organizationSchema } from '../data/schema';
-import Navigation from '../components/Navigation.astro';
-import PostHogInit from '../../src/components/PostHogInit';
-import HeroAstro from '../../src/components/HeroAstro';
-import CapabilityProof from '../../src/components/CapabilityProof';
-import UseCases from '../../src/components/UseCases';
-import WhyTheApp from '../../src/components/WhyTheApp';
-import PromptLibrary from '../../src/components/PromptLibrary';
-import AppAndMCP from '../../src/components/AppAndMCP';
-import TrustedBy from '../../src/components/TrustedBy';
-import Blog from '../../src/components/Blog';
-import PricingTeaser from '../../src/components/PricingTeaser';
-import DownloadSection from '../../src/components/DownloadSection';
-import Footer from '../../src/components/Footer';
+import SiteLayout from '../layouts/SiteLayout.astro';
 ---
+<SiteLayout title="Otomasi — AI bekerja langsung di komputer Anda" description="Otomasi Remote MCP menghubungkan ChatGPT, Claude, dan klien MCP lain dengan file, terminal, dan proses komputer Anda.">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">AI WORKSPACE • REMOTE MCP</span>
+        <h1>Komputer Anda.<br /><em>Dalam satu</em><br /><em>percakapan.</em></h1>
+        <p class="hero-description">Hubungkan AI dengan file, terminal, dan proses di komputer Anda. Minta pekerjaan selesai langsung dari chat — tanpa perlu bolak-balik menyalin perintah dan hasil.</p>
+        <div class="hero-actions">
+          <a href="/dashboard/" class="button button-primary">Buka dashboard <span aria-hidden="true">↗</span></a>
+          <a href="/connect/" class="button button-light">Cara menghubungkan AI <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="hero-foot">
+          <span>Berjalan di mesin sendiri</span><span class="dot"></span><span>OAuth 2.0 + PKCE</span><span class="dot"></span><span>Remote MCP</span>
+        </div>
+      </div>
+      <div class="window" aria-label="Ilustrasi interaksi AI dengan terminal komputer">
+        <div class="window-top"><div class="window-dots"><i></i><i></i><i></i></div><span class="window-path">otomasi / workspace</span><span class="window-indicator"></span></div>
+        <div class="window-main">
+          <div class="window-sidebar"><span class="selected">✦  Chat AI</span><span>▧  Files</span><span>⌘  Terminal</span><span>◉  Processes</span></div>
+          <div class="window-content">
+            <div class="chat-question">Cek folder proyek dan lihat apakah aplikasi saya berjalan dengan baik.</div>
+            <div class="chat-answer">
+              <div class="bot-dot">o</div>
+              <div class="chat-answer-content">
+                <div class="bot-label">Otomasi <span style="color:#9b8976;font-weight:500">· contoh alur kerja</span></div>
+                <div class="terminal">
+                  <div><span class="terminal-prompt">$</span> list_directory /workspace</div>
+                  <div>  src/  dist/  package.json</div>
+                  <div><span class="terminal-prompt">$</span> check_service application</div>
+                  <div><span class="terminal-ok">✓</span> Service running</div>
+                  <div><span class="terminal-ok">✓</span> Directory accessible</div>
+                </div>
+                <div class="chat-complete">✓ Pekerjaan dicek langsung di mesin tujuan.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container info-row">
+      <div class="info-stat"><span class="stat-icon">⌘</span><div><strong>Remote MCP</strong><span>Protokol terbuka</span></div></div>
+      <div class="info-stat"><span class="stat-icon">▧</span><div><strong>File & terminal</strong><span>Bekerja pada mesin nyata</span></div></div>
+      <div class="info-stat"><span class="stat-icon">♧</span><div><strong>Akses terlindungi</strong><span>Otorisasi pemilik</span></div></div>
+    </div>
+  </section>
 
-<Layout
-  title="Desktop Commander - AI that executes"
-  description="Desktop Commander reads your files, runs commands, and automates workflows — all in natural language."
-  jsonLd={organizationSchema}
->
-  <!-- Load PostHog early to initialize analytics -->
-  <PostHogInit client:load />
-  
-  <div class="min-h-screen bg-background">
-    <Navigation />
-    <main>
-      <HeroAstro client:load />
-      <CapabilityProof client:visible />
-      <UseCases client:visible />
-      <WhyTheApp client:visible />
-      {/* PromptLibrary hidden — users reach prompts via nav or UseCases "Browse 60+ prompts" link */}
-      {/* <PromptLibrary client:visible /> */}
-      <PricingTeaser client:visible />
-      <AppAndMCP client:visible />
-      <TrustedBy client:visible />
-      <Blog client:visible />
-      <DownloadSection client:visible />
-    </main>
-    <Footer client:visible />
-  </div>
-</Layout>
+  <section class="section section-soft" id="fitur">
+    <div class="container">
+      <div class="section-heading center">
+        <span class="eyebrow">KEMAMPUAN AUTOMASI</span>
+        <h2>Dari tugas sederhana hingga <span class="accent-text">pekerjaan kompleks.</span></h2>
+        <p>Alih-alih hanya memberi instruksi, AI dapat bekerja lewat tool MCP pada komputer yang Anda hubungkan.</p>
+      </div>
+      <div class="features-grid">
+        <article class="feature-card"><span class="feature-icon">▤</span><h3>Kelola berkas</h3><p>Baca, tulis, cari, pindahkan, dan perbarui file langsung di direktori yang diizinkan.</p></article>
+        <article class="feature-card"><span class="feature-icon">⌘</span><h3>Jalankan terminal</h3><p>Jalankan perintah, inspeksi keluaran, dan bantu pekerjaan teknis pada mesin Anda.</p></article>
+        <article class="feature-card"><span class="feature-icon">◉</span><h3>Pantau proses</h3><p>Periksa program yang berjalan dan lihat proses atau sesi terminal melalui tool core.</p></article>
+        <article class="feature-card"><span class="feature-icon">⟲</span><h3>Otomasi alur kerja</h3><p>Rangkai langkah pekerjaan berulang menggunakan kemampuan AI dan tool yang tersedia.</p></article>
+        <article class="feature-card"><span class="feature-icon">⊞</span><h3>Proyek dan kode</h3><p>Telusuri struktur aplikasi, perbaiki kode, dan validasi hasil langsung di lingkungan kerja.</p></article>
+        <article class="feature-card"><span class="feature-icon">♙</span><h3>Koneksi aman</h3><p>Endpoint MCP memakai OAuth 2.0, PKCE, dan token sehingga operasi tidak terbuka bebas.</p></article>
+      </div>
+    </div>
+  </section>
 
-<style is:global>
-  @import '../../src/index.css';
-</style>
+  <section class="section" id="cara-kerja">
+    <div class="container">
+      <div class="section-heading">
+        <span class="eyebrow">LANGKAH AWAL</span><h2>Cukup tiga langkah <span class="accent-text">untuk terhubung.</span></h2>
+        <p>Dari komputer sendiri ke asisten AI yang Anda gunakan, lewat endpoint MCP yang sama.</p>
+      </div>
+      <div class="steps">
+        <article class="step"><span class="step-number">01</span><h3>Siapkan komputer</h3><p>Jalankan engine dan gateway MCP pada komputer tujuan. Server host saat ini berada di <strong>sirobo</strong>.</p></article>
+        <article class="step"><span class="step-number">02</span><h3>Tambahkan konektor</h3><p>Masukkan alamat MCP Otomasi pada ChatGPT atau aplikasi AI lain yang mendukung Remote MCP.</p></article>
+        <article class="step"><span class="step-number">03</span><h3>Berikan otorisasi</h3><p>Setujui akses menggunakan kode pemilik melalui alur OAuth. Setelah terhubung, mulai bekerja lewat chat.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft" id="integrasi">
+    <div class="container integrations-grid">
+      <div class="section-heading" style="margin-bottom:0">
+        <span class="eyebrow">SATU PROTOKOL, BANYAK PILIHAN</span>
+        <h2>Gunakan AI yang <span class="accent-text">sudah Anda sukai.</span></h2>
+        <p>Endpoint Remote MCP Otomasi dapat digunakan oleh klien yang mendukung Streamable HTTP dan alur OAuth yang kompatibel.</p>
+        <a href="/connect/" class="button button-primary" style="margin-top:26px">Panduan koneksi <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="integration-card">
+        <div class="code-title" style="margin-bottom:22px">Kompatibilitas protokol</div>
+        <div class="integration-pills">
+          <span class="integration-pill"><span>✳</span> ChatGPT</span>
+          <span class="integration-pill"><span>◈</span> Claude</span>
+          <span class="integration-pill"><span>▧</span> Cursor</span>
+          <span class="integration-pill"><span>⌘</span> Klien MCP lain</span>
+        </div>
+        <div class="notice" style="margin-top:23px">Ketersediaan koneksi bergantung pada fitur serta pengaturan masing-masing klien AI. Akses tetap memerlukan otorisasi yang sah.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-panel">
+        <div><h2>Mulai pekerjaan berikutnya<br />langsung dari chat.</h2><p>Satu dashboard Otomasi untuk melihat status server dan menyiapkan koneksi AI.</p></div>
+        <a href="/dashboard/" class="button button-light">Masuk dashboard <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+</SiteLayout>

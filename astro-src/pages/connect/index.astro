@@ -1,0 +1,33 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+const endpoint = 'https://mcp.otomasi.app/remote/mcp';
+---
+<SiteLayout title="Hubungkan AI — Otomasi" description="Panduan menambahkan Otomasi Remote MCP ke klien AI yang mendukung OAuth dan Streamable HTTP.">
+  <section class="page-intro"><div class="container"><span class="eyebrow">KONEKSI AI / REMOTE MCP</span><h1>Hubungkan AI dengan <span class="accent-text">Otomasi.</span></h1><p>Satu alamat MCP untuk menghubungkan asisten AI dengan komputer host. Koneksi membutuhkan persetujuan pemilik sebelum menjalankan tool.</p></div></section>
+  <div class="container connect-layout">
+    <div>
+      <section class="panel">
+        <div class="panel-header"><div><h2>Mulai dalam tiga langkah</h2><p>Untuk klien AI yang mendukung Remote MCP</p></div></div>
+        <div class="panel-body">
+          <div class="connect-step"><span class="connect-number">01</span><div><h3>Buka pengaturan konektor AI</h3><p>Pada aplikasi AI Anda, buka menu konektor atau MCP. Pilih untuk menambahkan server MCP menggunakan alamat URL, bukan perintah lokal.</p></div></div>
+          <div class="connect-step"><span class="connect-number">02</span><div><h3>Masukkan alamat MCP Otomasi</h3><p>Gunakan URL lengkap di bawah, kemudian ikuti proses sambungan yang ditampilkan klien AI.</p><div class="endpoint-box" style="margin-top:17px"><code>{endpoint}</code><button class="button button-primary" type="button" id="copy-connect" data-copy={endpoint}>Salin URL</button></div></div></div>
+          <div class="connect-step"><span class="connect-number">03</span><div><h3>Selesaikan otorisasi pemilik</h3><p>Alur OAuth membuka halaman persetujuan Otomasi. Masukkan kode akses pemilik pada halaman resmi yang disajikan server, bukan di dalam percakapan AI.</p></div></div>
+        </div>
+      </section>
+      <section class="panel"><div class="panel-header"><div><h2>Setelah terhubung</h2><p>Contoh pekerjaan yang bisa diminta</p></div></div><div class="panel-body"><div class="tools-cloud"><span class="tool-chip">“Periksa isi folder proyek saya”</span><span class="tool-chip">“Cek proses yang berjalan”</span><span class="tool-chip">“Baca dan perbaiki file kode ini”</span><span class="tool-chip">“Jalankan pemeriksaan aplikasi”</span></div><p style="font-size:12px;color:var(--muted);line-height:1.8;margin:20px 0 0">Eksekusi mengikuti izin dan kemampuan yang diberikan oleh sistem serta klien AI yang Anda gunakan.</p></div></section>
+    </div>
+    <aside class="connect-side">
+      <div class="connect-tip"><div class="code-title" style="margin-bottom:19px">Informasi koneksi</div><h3>Otomasi Remote MCP</h3><p>Gateway berjalan pada komputer sirobo dan tersedia melalui subdomain HTTPS Anda.</p><div style="height:1px;background:#ddcdbb;margin:22px 0"></div><div class="device-details" style="border:0;margin:0;padding:0;grid-template-columns:1fr"><div><span>Protokol</span><strong>Streamable HTTP</strong></div><div><span>Autentikasi</span><strong>OAuth 2.0 / PKCE</strong></div><div><span>Host</span><strong>mcp.otomasi.app</strong></div></div><a href="/dashboard/" class="button button-light" style="margin-top:25px;width:100%">Lihat dashboard →</a></div>
+      <div class="notice" style="margin-top:17px"><strong>Catatan:</strong> dashboard ini menampilkan status gateway Otomasi sendiri. Fitur manajemen banyak perangkat yang ada pada layanan hosted lain belum tersedia pada backend ini.</div>
+    </aside>
+  </div>
+  <script is:inline>
+    document.getElementById('copy-connect')?.addEventListener('click', async event => {
+      const button = event.currentTarget;
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy || '');
+        button.textContent = 'Tersalin ✓';
+      } catch { button.textContent = 'Salin manual'; }
+    });
+  </script>
+</SiteLayout>

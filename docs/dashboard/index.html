@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang="id"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f8f2e9"><meta name="description" content="Pantau status gateway Otomasi Remote MCP, endpoint, dan informasi server sirobo."><meta property="og:type" content="website"><meta property="og:site_name" content="Otomasi"><meta property="og:title" content="Dashboard — Otomasi Remote MCP"><meta property="og:description" content="Pantau status gateway Otomasi Remote MCP, endpoint, dan informasi server sirobo."><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://mcp.otomasi.app/dashboard/"><title>Dashboard — Otomasi Remote MCP</title><link rel="stylesheet" href="/_assets/index.CZ0HHyGT.css"></head> <body> <div class="page-backdrop" aria-hidden="true"></div> <header class="site-header"> <div class="container nav-shell"> <a class="brand" href="/" aria-label="Otomasi — ke halaman utama"> <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><rect x="7" y="7" width="30" height="30" rx="10" stroke="currentColor" stroke-width="4"></rect><path d="m16 22 5 5 8-11" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span> <span class="brand-word">otomasi<span class="brand-caption">REMOTE WORKSPACE</span></span> </a> <button class="mobile-nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Tampilkan navigasi"> <span></span><span></span><span></span> </button> <nav class="nav-links" id="primary-nav" aria-label="Navigasi utama"> <a href="/">Beranda</a> <a href="/#fitur">Fitur</a> <a href="/#cara-kerja">Cara kerja</a> <a href="/connect/">Koneksi AI</a> <a class="button button-small button-primary nav-dashboard" href="/dashboard/"><span class="nav-dashboard-icon">◫</span> Dashboard <span aria-hidden="true">↗</span></a> </nav> </div> </header> <main id="main-content"> <section class="dashboard-page"> <div class="container dashboard-grid"> <aside class="dashboard-sidebar" aria-label="Menu dashboard"> <div class="side-section-label">Workspace</div> <a class="sidebar-link active" href="/dashboard/"><span class="side-glyph">◫</span> Ringkasan</a> <a class="sidebar-link" href="#perangkat"><span class="side-glyph">▧</span> Perangkat</a> <a class="sidebar-link" href="#endpoint"><span class="side-glyph">⌘</span> Endpoint</a> <a class="sidebar-link" href="/connect/"><span class="side-glyph">✳</span> Hubungkan AI</a> <div class="sidebar-bottom"><div class="side-section-label">Otomasi</div><p>Dashboard ini memantau gateway MCP milik Anda. Tidak mengakses akun layanan hosted pihak ketiga.</p></div> </aside> <div class="dashboard-main"> <div class="dashboard-heading"> <div><span class="eyebrow">WORKSPACE / RINGKASAN</span><h1>Selamat datang di <span class="accent-text">Otomasi.</span></h1><p>Status langsung dari gateway yang berjalan pada server sirobo.</p></div> <button type="button" class="button button-light button-small" id="refresh-status">⟳ <span>Perbarui status</span></button> </div> <div class="dashboard-metrics"> <div class="metric-card"><span class="metric-title">Status gateway <span>◉</span></span><div class="metric-value" id="metric-state" style="font-size:25px">Memeriksa…</div><div class="metric-note" id="metric-state-note">Menghubungi server</div></div> <div class="metric-card"><span class="metric-title">Sesi MCP aktif <span>⌘</span></span><div class="metric-value" id="metric-sessions">—</div><div class="metric-note">Jumlah sesi yang dilaporkan gateway</div></div> <div class="metric-card"><span class="metric-title">Host gateway <span>▧</span></span><div class="metric-value">sirobo</div><div class="metric-note">Server Linux Anda saat ini</div></div> </div> <section class="panel" id="perangkat"> <div class="panel-header"><div><h2>Komputer host</h2><p>Mesin tempat engine MCP Otomasi dijalankan</p></div><span class="status-indicator" data-state="checking" id="device-status"><span class="status-dot"></span><span id="device-label">Memeriksa koneksi</span></span></div> <div class="panel-body"> <div class="device-row"><span class="device-mark">▣</span><div class="device-description"><h3>sirobo</h3><p>Linux · Otomasi Remote MCP gateway</p></div><a href="/connect/" class="button button-light button-small">Hubungkan AI <span aria-hidden="true">↗</span></a></div> <div class="device-details"><div><span>Nama host</span><strong>sirobo</strong></div><div><span>Jenis koneksi</span><strong>Remote MCP melalui HTTPS</strong></div><div><span>Status pemeriksaan</span><strong id="last-checked">Belum diperiksa</strong></div></div> </div> </section> <section class="panel" id="endpoint"> <div class="panel-header"><div><h2>Koneksi Remote MCP</h2><p>Alamat yang digunakan oleh asisten AI Anda</p></div><span class="status-indicator">OAuth 2.0 + PKCE</span></div> <div class="panel-body"> <div class="code-title" style="margin-bottom:12px">Server URL</div> <div class="endpoint-box"><code id="mcp-url">https://mcp.otomasi.app/remote/mcp</code><button type="button" class="button button-primary" data-copy="https://mcp.otomasi.app/remote/mcp">Salin URL</button></div> <div class="callout" style="margin-top:22px"><strong>Keamanan koneksi.</strong> Menambahkan URL ke klien AI tidak langsung memberikan akses komputer. Pengguna harus menyelesaikan otorisasi pemilik melalui OAuth.</div> </div> </section> <div class="action-cards"> <article class="action-card"><h3>✳ Hubungkan asisten AI</h3><p>Langkah koneksi untuk klien yang mendukung Remote MCP, termasuk otorisasi awal.</p><a href="/connect/" class="text-link">Lihat panduan →</a></article> <article class="action-card"><h3>⌘ Periksa server</h3><p>Lihat respons pemeriksaan kesehatan yang disediakan oleh gateway MCP saat ini.</p><a href="/remote/healthz" class="text-link" target="_blank" rel="noopener noreferrer">Buka health endpoint ↗</a></article> </div> <section class="panel" style="margin-top:20px"><div class="panel-header"><div><h2>Tool engine MCP</h2><p>Contoh kemampuan yang tersedia pada core terpasang</p></div></div><div class="panel-body"><div class="tools-cloud"><span class="tool-chip">read_file</span><span class="tool-chip">write_file</span><span class="tool-chip">list_directory</span><span class="tool-chip">edit_block</span><span class="tool-chip">start_process</span><span class="tool-chip">read_process_output</span><span class="tool-chip">get_file_info</span><span class="tool-chip">start_search</span></div></div></section> </div> </div> </section> <script>
+    (() => {
+      const $ = id => document.getElementById(id);
+      const button = $('refresh-status');
+      const setStatus = (state, label) => {
+        const indicator = $('device-status');
+        indicator.dataset.state = state;
+        $('device-label').textContent = label;
+      };
+      async function refresh() {
+        button.disabled = true;
+        button.querySelector('span').textContent = 'Memeriksa…';
+        try {
+          const controller = new AbortController();
+          const timeout = setTimeout(() => controller.abort(), 7000);
+          let response;
+          try { response = await fetch('/remote/healthz', { cache: 'no-store', signal: controller.signal }); }
+          finally { clearTimeout(timeout); }
+          if (!response.ok) throw new Error('Gateway tidak merespons');
+          const data = await response.json();
+          if (data.status !== 'ok') throw new Error('Status belum tersedia');
+          $('metric-state').textContent = 'Online';
+          $('metric-state-note').textContent = 'Gateway dapat dijangkau';
+          $('metric-sessions').textContent = Number.isSafeInteger(data.activeSessions) ? String(data.activeSessions) : '—';
+          $('last-checked').textContent = new Intl.DateTimeFormat('id-ID',{hour:'2-digit',minute:'2-digit'}).format(new Date());
+          setStatus('online','Terhubung');
+        } catch {
+          $('metric-state').textContent = 'Offline';
+          $('metric-state-note').textContent = 'Gateway tidak dapat dijangkau';
+          $('metric-sessions').textContent = '—';
+          $('last-checked').textContent = 'Gagal terhubung';
+          setStatus('offline','Tidak tersedia');
+        } finally {
+          button.disabled = false;
+          button.querySelector('span').textContent = 'Perbarui status';
+        }
+      }
+      button.addEventListener('click', refresh);
+      document.querySelectorAll('[data-copy]').forEach(copyButton => copyButton.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(copyButton.dataset.copy || '');
+          copyButton.textContent = 'Tersalin ✓';
+        } catch {
+          copyButton.textContent = 'Salin manual';
+        }
+      }));
+      refresh();
+    })();
+  </script> </main> <footer class="site-footer"> <div class="container"> <div class="footer-top"> <div> <a href="/" class="brand brand-footer"> <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><rect x="7" y="7" width="30" height="30" rx="10" stroke="currentColor" stroke-width="4"></rect><path d="m16 22 5 5 8-11" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span> <span class="brand-word">otomasi<span class="brand-caption">REMOTE WORKSPACE</span></span> </a> <p>AI yang benar-benar bekerja di komputer Anda. Terhubung lewat MCP, dikelola dengan sederhana.</p> </div> <div class="footer-links"><span>Jelajahi</span><a href="/">Beranda</a><a href="/dashboard/">Dashboard</a><a href="/connect/">Hubungkan AI</a></div> <div class="footer-links"><span>Sistem</span><a href="https://mcp.otomasi.app/remote/healthz" target="_blank" rel="noopener noreferrer">Status server</a><a href="https://github.com/rofiqcp" target="_blank" rel="noopener noreferrer">GitHub Otomasi</a></div> </div> <div class="footer-bottom"><span>© 2026 Otomasi. Dibangun untuk bekerja lebih cerdas.</span><span>Dirancang dengan <span aria-label="perhatian">♥</span> di Indonesia</span></div> </div> </footer> <script>
+      (() => {
+        const button = document.getElementById('nav-toggle');
+        const nav = document.getElementById('primary-nav');
+        if (!button || !nav) return;
+        button.addEventListener('click', () => {
+          const open = button.getAttribute('aria-expanded') !== 'true';
+          button.setAttribute('aria-expanded', String(open));
+          nav.classList.toggle('nav-open', open);
+        });
+        nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+          button.setAttribute('aria-expanded', 'false');
+          nav.classList.remove('nav-open');
+        }));
+      })();
+    </script> </body> </html>
